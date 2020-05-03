@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
+use App\Employee;
 
 class EmployeeController extends Controller {
     //
     public function __construct() {
         $this->middleware( 'auth' );
     }
-
+  // index page
     public function index() {
         return view( 'add_employee' );
     }
 
+    // add employe
     public function store(Request $request) {
         $validatedData = $request->validate( [
             'name' => 'required',
@@ -75,8 +77,10 @@ class EmployeeController extends Controller {
 
 }
 
+ //show employee
  public function show(){
-    return view( 'all_employee' );
+     $employees = Employee::all();
+     return view('all_employee',compact('employees'));
  }
 
 

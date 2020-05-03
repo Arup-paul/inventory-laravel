@@ -290,15 +290,7 @@
     <script src="{{asset('public/links/assets/sweet-alert/sweet-alert.min.js')}}"></script>
     <script src="{{asset('public/links/assets/sweet-alert/sweet-alert.init.js')}}"></script>
 
-    <!-- flot Chart -->
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.time.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.tooltip.min.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.resize.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.pie.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.selection.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.stack.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.crosshair.js')}}"></script>
+
 
     <!-- Counter-up -->
     <script src="{{asset('public/links/assets/counterup/waypoints.min.js')}}" type="text/javascript"></script>
@@ -313,7 +305,9 @@
 
     <!-- Dashboard -->
     <script src="{{asset('public/links/js/jquery.dashboard.js')}}"></script>
-
+    <!-- datatable -->
+    <script src="{{asset('public/links/assets/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/links/assets/datatables/dataTables.bootstrap.js')}}"></script>
     <!-- Chat -->
     <script src="{{asset('public/links/js/jquery.chat.js')}}"></script>
 
@@ -330,6 +324,12 @@
                 time: 1200
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatable').dataTable();
+        } );
     </script>
     <script>
         @if(Session::has('message'))
@@ -351,7 +351,7 @@
         @endif
     </script>
     <script>
-        $(document).on("click","delete",function(e){
+        $(document).on("click","#delete",function(e){
             e.preventDefault();
             var link = $(this).attr("href");
             swal({
