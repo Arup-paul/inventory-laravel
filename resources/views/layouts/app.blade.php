@@ -19,6 +19,7 @@
 
     <!-- animate css -->
     <link href="{{asset('public/links/css/animate.css')}}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 
     <!-- Waves-effect -->
     <link href="{{asset('public/links/css/waves-effect.css')}}" rel="stylesheet">
@@ -201,14 +202,15 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-mail"></i><span> Mail </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="#" class="waves-effect"><i class="md md-contacts"></i><span> Employee </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{route('inbox')}}">Inbox</a></li>
+                                    <li><a href="{{route('add.employee')}}">Add Employee </a></li>
+                                     <li><a href="{{route('view.employee')}}">View Employee </a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="{{route('calender')}}" class="waves-effect"><i class="md md-event"></i><span> Calendar </span></a>
+                                <a href="#" class="waves-effect"><i class="md md-event"></i><span> Calendar </span></a>
                             </li>
 
                             <li class="has_sub">
@@ -255,6 +257,21 @@
         var resizefunc = [];
     </script>
 
+    <script>
+        function readURL(input){
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#image')
+                       .attr('src',e.target.result)
+                       .width(80)
+                       .height(80)
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
     <!-- jQuery  -->
     <script src="{{asset('public/links/js/jquery.min.js')}}"></script>
     <script src="{{asset('public/links/js/bootstrap.min.js')}}"></script>
@@ -273,15 +290,7 @@
     <script src="{{asset('public/links/assets/sweet-alert/sweet-alert.min.js')}}"></script>
     <script src="{{asset('public/links/assets/sweet-alert/sweet-alert.init.js')}}"></script>
 
-    <!-- flot Chart -->
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.time.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.tooltip.min.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.resize.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.pie.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.selection.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.stack.js')}}"></script>
-    <script src="{{asset('public/links/assets/flot-chart/jquery.flot.crosshair.js')}}"></script>
+
 
     <!-- Counter-up -->
     <script src="{{asset('public/links/assets/counterup/waypoints.min.js')}}" type="text/javascript"></script>
@@ -289,10 +298,16 @@
 
     <!-- CUSTOM JS -->
     <script src="{{asset('public/links/js/jquery.app.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+
 
     <!-- Dashboard -->
     <script src="{{asset('public/links/js/jquery.dashboard.js')}}"></script>
-
+    <!-- datatable -->
+    <script src="{{asset('public/links/assets/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/links/assets/datatables/dataTables.bootstrap.js')}}"></script>
     <!-- Chat -->
     <script src="{{asset('public/links/js/jquery.chat.js')}}"></script>
 
@@ -307,6 +322,51 @@
             $('.counter').counterUp({
                 delay: 100,
                 time: 1200
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatable').dataTable();
+        } );
+    </script>
+    <script>
+        @if(Session::has('message'))
+        var type = "{{Session::get('alert-type','info')}}"
+        switch(type){
+            case 'info':
+                toastr.info("{{Session::get('message')}}");
+                break;
+            case 'success':
+                toastr.success("{{Session::get('message')}}");
+                break;
+           case 'warning':
+                toastr.warning("{{Session::get('message')}}");
+                break;
+           case 'error':
+                toastr.error("{{Session::get('message')}}");
+                break;
+        }
+        @endif
+    </script>
+    <script>
+        $(document).on("click","#delete",function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+            swal({
+                title:"Are You Want To Delete",
+                text:"Once Delete, This will be Permently Deleted!",
+                icon:"warning",
+                buttons:true,
+                dangerMode:true,
+            })
+            .then((willDelete) => {
+                if(willDelete){
+                    window.location.href = link;
+                }else{
+                    swal("Safe Data");
+                }
             });
         });
     </script>
