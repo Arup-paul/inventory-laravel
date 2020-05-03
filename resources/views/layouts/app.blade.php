@@ -243,7 +243,7 @@
             @yield('content')
         </main>
 
-    <footer class="footer text-right">
+    <footer class="footer text-right" style="position:inherit;">
         2020 © Inventory
     </footer>
 
