@@ -28,6 +28,7 @@ Route::post('/insert-customer', 'CustomersController@store');
 Route::get('/view_customer/{id}', 'CustomersController@viewCustomers');
 Route::get('/delete_customer/{id}', 'CustomersController@deleteCustomers');
 Route::get('/edit_customer/{id}', 'CustomersController@editCustomers');
+Route::post('/update-customer/{id}', 'CustomersController@updateCustomer');
 
 
 
