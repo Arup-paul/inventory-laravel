@@ -103,20 +103,27 @@ class EmployeeController extends Controller {
             ->WHERE( 'id', $id )
             ->delete();
 
-            if ( $deleteUser ) {
-                $notification = array(
-                    'message' => "Succesfully Employee  Deleted",
-                    'alert-type' => 'success',
-                );
-                return Redirect()->route( 'all.employee' )->with( $notification );
-            } else {
-                $notification = array(
-                    'message' => "Error",
-                    'alert-type' => 'error',
-                );
-                return Redirect()->back()->with( $notification );
-            }
+        if ( $deleteUser ) {
+            $notification = array(
+                'message' => "Succesfully Employee  Deleted",
+                'alert-type' => 'success',
+            );
+            return Redirect()->route( 'all.employee' )->with( $notification );
+        } else {
+            $notification = array(
+                'message' => "Error",
+                'alert-type' => 'error',
+            );
+            return Redirect()->back()->with( $notification );
+        }
 
+    }
+
+    public function editEmployee( $id ) {
+        $edit = DB::table( 'employees' )
+            ->WHERE( 'id', $id )
+            ->first();
+        return view( 'edit_employee', compact( 'edit' ) );
 
     }
 
