@@ -84,6 +84,16 @@ class EmployeeController extends Controller {
  }
 
 
+ //view single Employee
+
+ public function viewEmployee($id){
+     $single = DB::table('employees')
+              ->WHERE('id',$id)
+              ->first();
+      return view('view_employee',compact('single'));
+ }
+
+
 
 
 
