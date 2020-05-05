@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Employee;
+use App\Customers;
 use DB;
 use Illuminate\Http\Request;
 
@@ -64,7 +64,7 @@ class CustomersController extends Controller
                         'message' => "Succesfully Customers  Inserted",
                         'alert-type' => 'success',
                     );
-                    return Redirect()->route( 'home' )->with( $notification );
+                    return Redirect()->route( 'all.employee' )->with( $notification );
                 } else {
                     $notification = array(
                         'message' => "Error",
@@ -81,7 +81,19 @@ class CustomersController extends Controller
 
     }
 
+   //show Customers
+   public function show() {
+    $customers = Customers::all();
+    return view( 'all_customers', compact( 'customers' ) );
+}
 
+//view single customers
+public function viewCustomers( $id ) {
+    $single = DB::table( 'customers' )
+        ->WHERE( 'id', $id )
+        ->first();
+    return view( 'view_customer', compact( 'single' ) );
+}
 
 
 }

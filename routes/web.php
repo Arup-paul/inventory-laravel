@@ -25,6 +25,7 @@ Route::post('/update-employee/{id}', 'EmployeeController@updateEmployee');
 Route::get('/add-customer', 'CustomersController@index')->name('add.customer');
 Route::get('/all_customer', 'CustomersController@show')->name('all.customer');
 Route::post('/insert-customer', 'CustomersController@store');
+Route::get('/view_customer/{id}', 'CustomersController@viewCustomers');
 
 
 

@@ -210,7 +210,7 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-contacts"></i><span> Customers </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i><span> Customers </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('add.customer')}}">Add Customer </a></li>
                                      <li><a href="{{route('all.customer')}}">All Customers </a></li>
