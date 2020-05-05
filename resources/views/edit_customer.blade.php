@@ -98,7 +98,7 @@
 
 
 \
-                    <button type="submit" class="btn btn-purple waves-effect waves-light">Update Employee</button>
+                    <button type="submit" class="btn btn-purple waves-effect waves-light">Update Customer</button>
                 </form>
             </div><!-- panel-body -->
         </div> <!-- panel -->

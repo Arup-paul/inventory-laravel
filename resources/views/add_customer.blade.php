@@ -93,7 +93,7 @@
 
 
 
-                    <button type="submit" class="btn btn-purple waves-effect waves-light">Add Employee</button>
+                    <button type="submit" class="btn btn-purple waves-effect waves-light">Add Customer</button>
                 </form>
             </div><!-- panel-body -->
         </div> <!-- panel -->
