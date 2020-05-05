@@ -19,3 +19,12 @@ Route::get('/delete_employee/{id}', 'EmployeeController@deleteEmployee');
 Route::get('/edit_employee/{id}', 'EmployeeController@editEmployee');
 Route::post('/update-employee/{id}', 'EmployeeController@updateEmployee');
 
+
+
+//customer Route
+Route::get('/add-customer', 'CustomersController@index')->name('add.customer');
+Route::get('/all_customer', 'CustomersController@show')->name('all.customer');
+Route::post('/insert-customer', 'CustomersController@store');
+
+
+
