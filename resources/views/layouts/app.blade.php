@@ -205,7 +205,7 @@
                                 <a href="#" class="waves-effect"><i class="md md-contacts"></i><span> Employee </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('add.employee')}}">Add Employee </a></li>
-                                     <li><a href="{{route('view.employee')}}">View Employee </a></li>
+                                     <li><a href="{{route('all.employee')}}">All Employee </a></li>
                                 </ul>
                             </li>
 

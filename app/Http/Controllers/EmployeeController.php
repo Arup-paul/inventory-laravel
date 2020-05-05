@@ -1,22 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use DB;
 use App\Employee;
+use DB;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller {
     //
     public function __construct() {
         $this->middleware( 'auth' );
     }
-  // index page
+    // index page
     public function index() {
         return view( 'add_employee' );
     }
 
     // add employe
-    public function store(Request $request) {
+    public function store( Request $request ) {
         $validatedData = $request->validate( [
             'name' => 'required',
             'email' => 'required|unique:employees',
@@ -30,71 +30,94 @@ class EmployeeController extends Controller {
             'nid_no' => 'required',
         ] );
 
-        $data = array();
-        $data['name'] = $request->name;
-        $data['email'] = $request->email;
-        $data['phone'] = $request->phone;
-        $data['address'] = $request->address;
+        $data               = array();
+        $data['name']       = $request->name;
+        $data['email']      = $request->email;
+        $data['phone']      = $request->phone;
+        $data['address']    = $request->address;
         $data['experience'] = $request->experience;
-        $data['salary'] = $request->salary;
-        $data['vacation'] = $request->vacation;
-        $data['city'] = $request->city;
-        $data['nid_no'] = $request->nid_no;
+        $data['salary']     = $request->salary;
+        $data['vacation']   = $request->vacation;
+        $data['city']       = $request->city;
+        $data['nid_no']     = $request->nid_no;
 
-        $image = $request->file('photo');
+        $image = $request->file( 'photo' );
 
-        if($image){
-            $image_name = bin2hex( random_bytes( 50 ) );
-            $ext = strtolower($image->getClientOriginalExtension());
-            $image_full_name = $image_name.'.'.$ext;
-            $upload_path = 'public/employee/';
-            $image_url= $upload_path.$image_full_name;
-            $success = $image->move($upload_path,$image_full_name);
-            if($success){
+        if ( $image ) {
+            $image_name      = bin2hex( random_bytes( 50 ) );
+            $ext             = strtolower( $image->getClientOriginalExtension() );
+            $image_full_name = $image_name . '.' . $ext;
+            $upload_path     = 'public/employee/';
+            $image_url       = $upload_path . $image_full_name;
+            $success         = $image->move( $upload_path, $image_full_name );
+            if ( $success ) {
                 $data['photo'] = $image_url;
-                $employee = DB::table('employees')
-                        ->insert($data);
-                  if($employee){
-                      $notification = array(
-                          'message' => "Succesfully Employee  Inserted",
-                          'alert-type'=>'success'
-                      );
-                      return Redirect()->route('home')->with($notification);
-                  }else{
+                $employee      = DB::table( 'employees' )
+                    ->insert( $data );
+                if ( $employee ) {
+                    $notification = array(
+                        'message' => "Succesfully Employee  Inserted",
+                        'alert-type' => 'success',
+                    );
+                    return Redirect()->route( 'home' )->with( $notification );
+                } else {
                     $notification = array(
                         'message' => "Error",
-                        'alert-type'=>'error'
+                        'alert-type' => 'error',
                     );
-                    return Redirect()->back()->with($notification);
-                  }
-            }else{
+                    return Redirect()->back()->with( $notification );
+                }
+            } else {
                 return Redirect()->back();
             }
-        }else{
+        } else {
             return Redirect()->back();
         }
 
+    }
 
-}
+    //show employee
+    public function show() {
+        $employees = Employee::all();
+        return view( 'all_employee', compact( 'employees' ) );
+    }
 
- //show employee
- public function show(){
-     $employees = Employee::all();
-     return view('all_employee',compact('employees'));
- }
+    //view single Employee
+
+    public function viewEmployee( $id ) {
+        $single = DB::table( 'employees' )
+            ->WHERE( 'id', $id )
+            ->first();
+        return view( 'view_employee', compact( 'single' ) );
+    }
+
+    //delete Employee
+    public function deleteEmployee( $id ) {
+        $delete = DB::table( 'employees' )
+            ->WHERE( 'id', $id )
+            ->first();
+
+        $photo = $delete->photo;
+        unlink( $photo );
+        $deleteUser = DB::table( 'employees' )
+            ->WHERE( 'id', $id )
+            ->delete();
+
+            if ( $deleteUser ) {
+                $notification = array(
+                    'message' => "Succesfully Employee  Deleted",
+                    'alert-type' => 'success',
+                );
+                return Redirect()->route( 'all.employee' )->with( $notification );
+            } else {
+                $notification = array(
+                    'message' => "Error",
+                    'alert-type' => 'error',
+                );
+                return Redirect()->back()->with( $notification );
+            }
 
 
- //view single Employee
-
- public function viewEmployee($id){
-     $single = DB::table('employees')
-              ->WHERE('id',$id)
-              ->first();
-      return view('view_employee',compact('single'));
- }
-
-
-
-
+    }
 
 }
