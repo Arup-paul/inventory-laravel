@@ -46,8 +46,10 @@
                                             <td>{{$employee->address}}</td>
                                             <td><img src="{{$employee->photo}}" alt="image" height="80px" width="100px"></td>
                                                 <td>
-                                                    <a href="#" class="btn btn-sm btn-info">Edit</a>
-                                                    <a  href="#" class="btn btn-sm btn-danger" id="delete">Delete</a>
+                                                    <a href="{{URL::to('/edit_employee/'.$employee->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                                    <a  href="{{URL::to('/view_employee/'.$employee->id)}}" class="btn btn-sm btn-primary" >View</a>
+                                                    <a  href="{{URL::to('/delete_employee/'.$employee->id)}}" class="btn btn-sm btn-danger" id="delete">Delete</a>
+
                                                 </td>
                                             </tr>
                                             @endforeach
