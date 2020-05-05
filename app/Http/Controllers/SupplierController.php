@@ -98,6 +98,34 @@ class SupplierController extends Controller {
         return view( 'view_supplier', compact( 'single' ) );
     }
 
+     //delete Suppliers
+     public function deleteSupplier( $id ) {
+        $delete = DB::table( 'suppliers' )
+            ->WHERE( 'id', $id )
+            ->first();
+
+        $photo = $delete->photo;
+        unlink( $photo );
+        $deletesupplier = DB::table( 'suppliers' )
+            ->WHERE( 'id', $id )
+            ->delete();
+
+        if ( $deletesupplier ) {
+            $notification = array(
+                'message' => "Succesfully Suppliers  Deleted",
+                'alert-type' => 'success',
+            );
+            return Redirect()->route( 'all.supplier' )->with( $notification );
+        } else {
+            $notification = array(
+                'message' => "Error",
+                'alert-type' => 'error',
+            );
+            return Redirect()->back()->with( $notification );
+        }
+
+    }
+
 
 
 
