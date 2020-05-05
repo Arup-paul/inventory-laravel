@@ -217,6 +217,14 @@
                                 </ul>
                             </li>
 
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i><span> Supplier </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{route('add.supplier')}}">Add Supplier </a></li>
+                                     <li><a href="{{route('all.supplier')}}">All Supplier </a></li>
+                                </ul>
+                            </li>
+
                             <li>
                                 <a href="#" class="waves-effect"><i class="md md-event"></i><span> Calendar </span></a>
                             </li>
