@@ -27,7 +27,7 @@ class EmployeeController extends Controller {
             'salary' => 'required',
             'vacation' => 'required',
             'city' => 'required',
-            'nid_no' => 'required',
+            'nid_no' => 'required|unique:employees',
         ] );
 
         $data               = array();
@@ -119,6 +119,7 @@ class EmployeeController extends Controller {
 
     }
 
+     //view employe  edit page
     public function editEmployee( $id ) {
         $edit = DB::table( 'employees' )
             ->WHERE( 'id', $id )
@@ -126,5 +127,82 @@ class EmployeeController extends Controller {
         return view( 'edit_employee', compact( 'edit' ) );
 
     }
+
+    //update employee
+
+    public function updateEmployee(Request $request,$id){
+        $validatedData = $request->validate( [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required|max:13',
+            'address' => 'required',
+            'experience' => 'required',
+            'salary' => 'required',
+            'vacation' => 'required',
+            'city' => 'required',
+            'nid_no' => 'required',
+        ] );
+
+        $data = array();
+        $data['name']       = $request->name;
+        $data['email']      = $request->email;
+        $data['phone']      = $request->phone;
+        $data['address']    = $request->address;
+        $data['experience'] = $request->experience;
+        $data['salary']     = $request->salary;
+        $data['vacation']   = $request->vacation;
+        $data['city']       = $request->city;
+        $data['nid_no']     = $request->nid_no;
+
+        $image = $request->photo;
+
+        if($image){
+            $image_name      = bin2hex( random_bytes( 50 ) );
+            $ext             = strtolower( $image->getClientOriginalExtension() );
+            $image_full_name = $image_name . '.' . $ext;
+            $upload_path     = 'public/employee/';
+            $image_url       = $upload_path . $image_full_name;
+            $success         = $image->move( $upload_path, $image_full_name );
+
+            if($success){
+                $data['photo'] = $image_url;
+                $img = DB::table('employees')->where('id',$id)->first();
+                $image_path = $img->photo;
+                $done = unlink($image_path);
+                $employee = DB::table('employees')->where('id',$id)->update($data);
+             if ( $employee ) {
+                    $notification = array(
+                        'message' => "Succesfully Employee  Updated",
+                        'alert-type' => 'success',
+                    );
+                    return Redirect()->route( 'all.employee' )->with( $notification );
+
+            }else{
+                return Redirect()->back();
+            }
+        }else{
+            return Redirect()->back();
+        }
+
+
+    }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

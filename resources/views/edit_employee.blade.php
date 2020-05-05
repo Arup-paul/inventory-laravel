@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">Update Employee Information</h3></div>
             <div class="panel-body">
-            <form role="form" action="{{url('/update-employee')}}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{url('/update-employee/'.$edit->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @if($errors->any())
                     <div class="alert alert-danger">
