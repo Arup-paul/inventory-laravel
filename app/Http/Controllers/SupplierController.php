@@ -86,8 +86,16 @@ class SupplierController extends Controller {
 
        //show Supplier
        public function show() {
-        $supplier = Suppliers::all();
-        return view( 'all_supplier', compact( 'supplier' ) );
+        $suppliers = Suppliers::all();
+        return view( 'all_supplier', compact( 'suppliers' ) );
+    }
+
+    //view single suppliers
+    public function viewSuppliers( $id ) {
+        $single = DB::table( 'suppliers' )
+            ->WHERE( 'id', $id )
+            ->first();
+        return view( 'view_supplier', compact( 'single' ) );
     }
 
 

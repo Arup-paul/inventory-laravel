@@ -36,6 +36,6 @@ Route::post('/update-customer/{id}', 'CustomersController@updateCustomer');
 Route::get('/add-supplier', 'SupplierController@index')->name('add.supplier');
 Route::get('/all_supplier', 'SupplierController@show')->name('all.supplier');
 Route::post('/insert-supplier', 'SupplierController@store');
-Route::get('/view_customer/{id}', 'CustomersController@viewCustomers');
+Route::get('/view_supplier/{id}', 'SupplierController@viewSuppliers');
 
 
