@@ -64,7 +64,7 @@ class CustomersController extends Controller
                         'message' => "Succesfully Customers  Inserted",
                         'alert-type' => 'success',
                     );
-                    return Redirect()->route( 'all.employee' )->with( $notification );
+                    return Redirect()->route( 'all.customer' )->with( $notification );
                 } else {
                     $notification = array(
                         'message' => "Error",
@@ -95,5 +95,33 @@ public function viewCustomers( $id ) {
     return view( 'view_customer', compact( 'single' ) );
 }
 
+
+   //delete Customers
+   public function deleteCustomers( $id ) {
+    $delete = DB::table( 'customers' )
+        ->WHERE( 'id', $id )
+        ->first();
+
+    $photo = $delete->photo;
+    unlink( $photo );
+    $deletecustomer = DB::table( 'customers' )
+        ->WHERE( 'id', $id )
+        ->delete();
+
+    if ( $deletecustomer ) {
+        $notification = array(
+            'message' => "Succesfully Customers  Deleted",
+            'alert-type' => 'success',
+        );
+        return Redirect()->route( 'all.customer' )->with( $notification );
+    } else {
+        $notification = array(
+            'message' => "Error",
+            'alert-type' => 'error',
+        );
+        return Redirect()->back()->with( $notification );
+    }
+
+}
 
 }
