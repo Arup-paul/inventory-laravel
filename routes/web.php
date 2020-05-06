@@ -38,5 +38,7 @@ Route::get('/all_supplier', 'SupplierController@show')->name('all.supplier');
 Route::post('/insert-supplier', 'SupplierController@store');
 Route::get('/view_supplier/{id}', 'SupplierController@viewSuppliers');
 Route::get('/delete_supplier/{id}', 'SupplierController@deleteSupplier');
+Route::get('/edit_supplier/{id}', 'SupplierController@editSupplier');
+Route::post('/update-supplier/{id}', 'SupplierController@updateSupplier');
 
 
