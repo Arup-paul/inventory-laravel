@@ -185,11 +185,27 @@ class CustomersController extends Controller {
                 } else {
                     return Redirect()->back();
                 }
-            } else {
-                return Redirect()->back();
             }
+            }
+            else {
+                $old_photo = $request->old_photo;
+                 if ( $old_photo ) {
+                     $data['photo'] = $old_photo;
+                     $customer      = DB::table( 'customers' )->where( 'id', $id )->update( $data );
+                     if ( $customer ) {
+                         $notification = array(
+                             'message' => "Succesfully Customer  Updated  without Image",
+                             'alert-type' => 'success',
+                         );
+                         return Redirect()->route( 'all.customer' )->with( $notification );
+
+                     } else {
+                         return Redirect()->back();
+                     }
+                 }
+             }
 
         }
 
     }
-}
+
