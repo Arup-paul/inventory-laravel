@@ -55,9 +55,9 @@
                     <div class="form-group">
                         <label for="type">Supplier Type*</label>
                          <select name="type" class="form-control" id="type">
-                             <option value="1">Distributor</option>
-                             <option value="2">Whole Seller</option>
-                             <option value="3">Brochure</option>
+                             <option value="Distributor">Distributor</option>
+                             <option value="WholeSeller">Whole Seller</option>
+                             <option value="Brochure">Brochure</option>
                          </select>
 
                     </div>
