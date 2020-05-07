@@ -119,7 +119,7 @@ class EmployeeController extends Controller {
 
     }
 
-     //view employe  edit page
+    //view employe  edit page
     public function editEmployee( $id ) {
         $edit = DB::table( 'employees' )
             ->WHERE( 'id', $id )
@@ -130,7 +130,7 @@ class EmployeeController extends Controller {
 
     //update employee
 
-    public function updateEmployee(Request $request,$id){
+    public function updateEmployee( Request $request, $id ) {
         $validatedData = $request->validate( [
             'name' => 'required',
             'email' => 'required',
@@ -143,7 +143,7 @@ class EmployeeController extends Controller {
             'nid_no' => 'required',
         ] );
 
-        $data = array();
+        $data               = array();
         $data['name']       = $request->name;
         $data['email']      = $request->email;
         $data['phone']      = $request->phone;
@@ -156,7 +156,7 @@ class EmployeeController extends Controller {
 
         $image = $request->photo;
 
-        if($image){
+        if ( $image ) {
             $image_name      = bin2hex( random_bytes( 50 ) );
             $ext             = strtolower( $image->getClientOriginalExtension() );
             $image_full_name = $image_name . '.' . $ext;
@@ -164,45 +164,41 @@ class EmployeeController extends Controller {
             $image_url       = $upload_path . $image_full_name;
             $success         = $image->move( $upload_path, $image_full_name );
 
-            if($success){
+            if ( $success ) {
                 $data['photo'] = $image_url;
-                $img = DB::table('employees')->where('id',$id)->first();
-                $image_path = $img->photo;
-                $done = unlink($image_path);
-                $employee = DB::table('employees')->where('id',$id)->update($data);
-             if ( $employee ) {
+                $img           = DB::table( 'employees' )->where( 'id', $id )->first();
+                $image_path    = $img->photo;
+                $done          = unlink( $image_path );
+                $employee      = DB::table( 'employees' )->where( 'id', $id )->update( $data );
+                if ( $employee ) {
                     $notification = array(
                         'message' => "Succesfully Employee  Updated",
                         'alert-type' => 'success',
                     );
                     return Redirect()->route( 'all.employee' )->with( $notification );
 
-            }else{
-                return Redirect()->back();
+                } else {
+                    return Redirect()->back();
+                }
             }
-        }else{
-            return Redirect()->back();
+        } else {
+            $old_photo = $request->old_photo;
+            if ( $old_photo ) {
+                $data['photo'] = $old_photo;
+                $customer      = DB::table( 'employees' )->where( 'id', $id )->update( $data );
+                if ( $customer ) {
+                    $notification = array(
+                        'message' => "Succesfully Employees  Updated  without Image",
+                        'alert-type' => 'success',
+                    );
+                    return Redirect()->route( 'all.employee' )->with( $notification );
+
+                } else {
+                    return Redirect()->back();
+                }
+            }
         }
 
-
     }
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
