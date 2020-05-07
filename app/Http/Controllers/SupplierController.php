@@ -137,19 +137,19 @@ class SupplierController extends Controller {
     //update Supplier
 
     public function updateSupplier( Request $request, $id ) {
-        // $validatedData = $request->validate( [
-        //     'name' => 'required',
-        //     'email' => 'required',
-        //     'phone' => 'required|max:13',
-        //     'address' => 'required',
-        //     'type' => 'required',
-        //     'shop' => 'required',
-        //     'account_holder' => 'required',
-        //     'account_number' => 'required',
-        //     'bank_name' => 'required',
-        //     'bank_branch' => 'required',
-        //     'city' => 'required',
-        // ] );
+        $validatedData = $request->validate( [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required|max:13',
+            'address' => 'required',
+            'type' => 'required',
+            'shop' => 'required',
+            'account_holder' => 'required',
+            'account_number' => 'required',
+            'bank_name' => 'required',
+            'bank_branch' => 'required',
+            'city' => 'required',
+        ] );
 
         $data                   = array();
         $data['name']           = $request->name;
