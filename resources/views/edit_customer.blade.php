@@ -92,12 +92,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="photo">Old Photo</label><br>
-                        <img src="{{URL::to($edit->photo)}}" height="150px" name="old_image" width="120px" alt="">
+                        <img id="image" height="80px" width="100px" alt="image" src="{{URL::to($edit->photo)}}"  >
+                        <label for="photo">Old Photo*</label><br>
+                        <input type="hidden" class="form-control" value="{{$edit->photo}}" name="old_photo" >
                     </div>
 
 
-\
                     <button type="submit" class="btn btn-purple waves-effect waves-light">Update Customer</button>
                 </form>
             </div><!-- panel-body -->
