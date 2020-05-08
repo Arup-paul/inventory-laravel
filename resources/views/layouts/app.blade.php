@@ -225,6 +225,14 @@
                                 </ul>
                             </li>
 
+                               <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i><span> Salary(EMP) </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{route('add.advance_salary')}}">Add Advance Salary </a></li>
+                                     <li><a href="{{route('all.advance_salary')}}">All Advance  Salary </a></li>
+                                </ul>
+                            </li>
+
                             <li>
                                 <a href="#" class="waves-effect"><i class="md md-event"></i><span> Calendar </span></a>
                             </li>

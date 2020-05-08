@@ -42,3 +42,8 @@ Route::get('/edit_supplier/{id}', 'SupplierController@editSupplier');
 Route::post('/update-supplier/{id}', 'SupplierController@updateSupplier');
 
 
+
+//Salary Routes
+Route::get('/add-advance_salary', 'SalaryController@index')->name('add.advance_salary');
+Route::get('/all_advance_salary', 'SalaryController@show')->name('all.advance_salary');
+Route::post('/insert_advance_salary', 'SalaryController@AdvanceSalary');
