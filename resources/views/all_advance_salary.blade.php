@@ -45,9 +45,7 @@
                                             <td>{{$single->year}}</td>
                                             <td>{{$single->advance_salary}}</td>
                                                 <td>
-                                                    <a href="{{URL::to('/edit_employee/'.$single->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                                    <a  href="{{URL::to('/view_employee/'.$single->id)}}" class="btn btn-sm btn-primary" >View</a>
-                                                    <a  href="{{URL::to('/delete_employee/'.$single->id)}}" class="btn btn-sm btn-danger" id="delete">Delete</a>
+                                                    <a  href="{{URL::to('/delete_advance_salary/'.$single->id)}}" class="btn btn-sm btn-danger" id="delete">Delete</a>
 
                                                 </td>
                                             </tr>

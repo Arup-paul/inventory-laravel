@@ -77,6 +77,28 @@ class SalaryController extends Controller {
                    return view('all_advance_salary',compact('salary'));
      }
 
+      //delete Advance Salary
+    public function deleteAdvanceSalary( $id ) {
+
+        $delete =  DB::table( 'advance_salary' )
+        ->WHERE( 'id', $id )
+        ->delete();
+        if ( $delete ) {
+            $notification = array(
+                'message' => "Succesfully  Deleted",
+                'alert-type' => 'success',
+            );
+            return Redirect()->route( 'all.advance_salary' )->with( $notification );
+        } else {
+            $notification = array(
+                'message' => "Error",
+                'alert-type' => 'error',
+            );
+            return Redirect()->back()->with( $notification );
+        }
+
+    }
+
 
 
 
