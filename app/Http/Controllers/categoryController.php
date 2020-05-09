@@ -14,7 +14,7 @@ class categoryController extends Controller
     }
     // index page
     public function index() {
-        return view( 'category' );
+        return view( 'category.category' );
     }
 
     public function store(Request $request){
@@ -47,7 +47,7 @@ class categoryController extends Controller
     public function show(){
         $category = DB::table( 'categories' )
         ->get();
-    return view( 'all_categories', compact( 'category' ) );
+    return view( 'category.all_categories', compact( 'category' ) );
     }
 
     public function deleteCategory( $id ) {
