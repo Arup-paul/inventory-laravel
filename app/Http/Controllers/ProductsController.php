@@ -78,5 +78,9 @@ class ProductsController extends Controller {
 
     }
 
-    
+      //show Customers
+      public function show() {
+        $products = Products::all();
+        return view( 'products.all_product', compact( 'products' ) );
+    }
 }
