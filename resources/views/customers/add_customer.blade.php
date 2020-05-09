@@ -18,7 +18,7 @@
          <div class="col-md-1"></div>
         <div class="col-md-8">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Add Customers</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Add Customers<span><a class="pull-right btn btn-primary" href="{{route('all.customer')}}">ALL</a> </span></h3></div>
             <div class="panel-body">
             <form role="form" action="{{url('/insert-customer')}}" method="post" enctype="multipart/form-data">
                     @csrf
