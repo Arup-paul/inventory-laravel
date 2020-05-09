@@ -2,44 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
-class SalaryController extends Controller
-{
+use Illuminate\Http\Request;
+
+class SalaryController extends Controller {
     //
-        //
-        public function __construct() {
-            $this->middleware( 'auth' );
-        }
-        // index page
-        public function index() {
-            return view( 'advance_salary' );
-        }
+    //
+    public function __construct() {
+        $this->middleware( 'auth' );
+    }
+    // index page
+    public function addAdvanceSalary() {
+        return view( 'advance_salary' );
+    }
 
-        //advance salary
+    //advance salary
 
-        public function AdvanceSalary(Request $request){
-           $data = array();
-           $data['employee_id'] = $request->employee_id;
-           $data['month'] = $request->month;
-           $data['advance_salary'] = $request->advance_salary;
-           $data['year'] = $request->year;
+    public function InsertAdvanceSalary( Request $request ) {
 
-          $advance = DB::table('advance_salary')->insert($data);
-          if ( $advance ) {
-            $notification = array(
-                'message' => "Succesfully Advance Salary  Paid",
-                'alert-type' => 'success',
-            );
-            return Redirect()->back()->with( $notification );
+        $validatedData = $request->validate( [
+            'employee_id' => 'required',
+            'month' => 'required',
+            'advance_salary' => 'required',
+            'year' => 'required',
+        ] );
+
+        $month       = $request->month;
+        $employee_id = $request->employee_id;
+
+        $advance = DB::table( 'advance_salary' )
+            ->where( 'month', $month )
+            ->where( 'employee_id', $employee_id )
+            ->first();
+
+        if ( $advance === NULL ) {
+            $data                   = array();
+            $data['employee_id']    = $request->employee_id;
+            $data['month']          = $request->month;
+            $data['advance_salary'] = $request->advance_salary;
+            $data['year']           = $request->year;
+
+            $advance = DB::table( 'advance_salary' )->insert( $data );
+            if ( $advance ) {
+                $notification = array(
+                    'message' => "Succesfully Advance Salary  Paid",
+                    'alert-type' => 'success',
+                );
+                return Redirect()->back()->with( $notification );
+            } else {
+                $notification = array(
+                    'message' => "Error",
+                    'alert-type' => 'error',
+                );
+                return Redirect()->back()->with( $notification );
+            }
+
         } else {
             $notification = array(
-                'message' => "Error",
+                'message' => "Oops! Already Advance In this Month",
                 'alert-type' => 'error',
             );
             return Redirect()->back()->with( $notification );
         }
+
     }
 
-        }
+    //show Advance salary Sheet
+     public function showAdvanceSalary(){
+         $salary = DB::table('advance_salary')
+                   ->join('employees','advance_salary.employee_id','employees.id')
+                   ->select('advance_salary.*','employees.name','employees.salary','employees.photo')
+                   ->orderBy('id','DESC')
+                    ->get();
+                   return view('all_advance_salary',compact('salary'));
+     }
 
+
+
+
+
+
+}
