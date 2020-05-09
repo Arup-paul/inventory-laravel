@@ -18,7 +18,7 @@
          <div class="col-md-1"></div>
         <div class="col-md-8">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Add Supplier</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Add Supplier<span><a class="pull-right btn btn-primary" href="{{route('all.supplier')}}">All</a> </span></h3></div>
             <div class="panel-body">
             <form role="form" action="{{url('/insert-supplier')}}" method="post" enctype="multipart/form-data">
                     @csrf

@@ -19,8 +19,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">All Supplier</h3>
-                        <a class="btn btn-lg btn-primary" href="{{route("add.supplier")}}">Add New</a>
+                            <h3 class="panel-title">All Supplier<span><a class="pull-right btn btn-primary" href="{{route('add.supplier')}}">Add New</a> </span></h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
