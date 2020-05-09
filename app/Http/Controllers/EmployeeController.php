@@ -12,7 +12,7 @@ class EmployeeController extends Controller {
     }
     // index page
     public function index() {
-        return view( 'add_employee' );
+        return view( 'employee.add_employee' );
     }
 
     // add employe
@@ -79,7 +79,7 @@ class EmployeeController extends Controller {
     //show employee
     public function show() {
         $employees = Employee::all();
-        return view( 'all_employee', compact( 'employees' ) );
+        return view( 'employee.all_employee', compact( 'employees' ) );
     }
 
     //view single Employee
@@ -88,7 +88,7 @@ class EmployeeController extends Controller {
         $single = DB::table( 'employees' )
             ->WHERE( 'id', $id )
             ->first();
-        return view( 'view_employee', compact( 'single' ) );
+        return view( 'employee.view_employee', compact( 'single' ) );
     }
 
     //delete Employee
@@ -124,7 +124,7 @@ class EmployeeController extends Controller {
         $edit = DB::table( 'employees' )
             ->WHERE( 'id', $id )
             ->first();
-        return view( 'edit_employee', compact( 'edit' ) );
+        return view( 'employee.edit_employee', compact( 'edit' ) );
 
     }
 

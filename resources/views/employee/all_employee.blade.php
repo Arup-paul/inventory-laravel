@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">All Employee</h3>
+                            <h3 class="panel-title">All Employee<span><a class="pull-right btn btn-primary" href="{{route('add.employee')}}">Add New</a> </span></h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
