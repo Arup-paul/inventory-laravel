@@ -15,7 +15,7 @@ class SupplierController extends Controller {
 
     // index page
     public function index() {
-        return view( 'add_supplier' );
+        return view( 'supplier.add_supplier' );
     }
 
     // add Supplier
@@ -88,7 +88,7 @@ class SupplierController extends Controller {
     //show Supplier
     public function show() {
         $suppliers = Suppliers::all();
-        return view( 'all_supplier', compact( 'suppliers' ) );
+        return view( 'supplier.all_supplier', compact( 'suppliers' ) );
     }
 
     //view single suppliers
@@ -96,7 +96,7 @@ class SupplierController extends Controller {
         $single = DB::table( 'suppliers' )
             ->WHERE( 'id', $id )
             ->first();
-        return view( 'view_supplier', compact( 'single' ) );
+        return view( 'supplier.view_supplier', compact( 'single' ) );
     }
 
     //delete Suppliers
@@ -132,7 +132,7 @@ class SupplierController extends Controller {
         $edit = DB::table( 'suppliers' )
             ->WHERE( 'id', $id )
             ->first();
-        return view( 'edit_supplier', compact( 'edit' ) );
+        return view( 'supplier.edit_supplier', compact( 'edit' ) );
     }
 
     //update Supplier
