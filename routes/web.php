@@ -59,3 +59,13 @@ Route::get('/delete_advance_salary/{id}', 'SalaryController@deleteAdvanceSalary'
 
 //pay salary
 Route::get('/pay_salary', 'SalaryController@Paysalary')->name('pay.salary');
+
+
+//products route
+Route::get('/add-product', 'ProductsController@index')->name('add.product');
+Route::get('/all_product', 'ProductsController@show')->name('all.product');
+Route::post('/insert-product', 'ProductsController@store');
+Route::get('/view_product/{id}', 'ProductsController@viewProduct');
+Route::get('/delete_product/{id}', 'ProductsController@deleteProduct');
+Route::get('/edit_product/{id}', 'ProductsController@editProduct');
+Route::post('/update-product/{id}', 'ProductsController@updateProduct');
