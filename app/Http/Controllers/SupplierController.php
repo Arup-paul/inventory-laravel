@@ -36,7 +36,8 @@ class SupplierController extends Controller {
             'city' => 'required',
         ] );
 
-        $data                   = array();
+      $data                   = array();
+
         $data['name']           = $request->name;
         $data['email']          = $request->email;
         $data['phone']          = $request->phone;
