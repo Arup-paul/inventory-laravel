@@ -13,7 +13,7 @@ class SalaryController extends Controller {
     }
     // index page
     public function addAdvanceSalary() {
-        return view( 'advance_salary' );
+        return view( 'salary.advance_salary' );
     }
 
     //advance salary
@@ -74,7 +74,7 @@ class SalaryController extends Controller {
             ->select( 'advance_salary.*', 'employees.name', 'employees.salary', 'employees.photo' )
             ->orderBy( 'id', 'DESC' )
             ->get();
-        return view( 'all_advance_salary', compact( 'salary' ) );
+        return view( 'salary.all_advance_salary', compact( 'salary' ) );
     }
 
     //delete Advance Salary
@@ -104,7 +104,7 @@ class SalaryController extends Controller {
     public function Paysalary() {
 
         $employees = DB::table( 'employees' )->get();
-        return view( 'pay_salary', compact( 'employees' ) );
+        return view( 'salary.pay_salary', compact( 'employees' ) );
     }
 
 }

@@ -18,7 +18,7 @@
          <div class="col-md-1"></div>
         <div class="col-md-8">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title ">Advance Salary Provide</h3></div>
+            <div class="panel-heading"><h3 class="panel-title ">Advance Salary Provide<span><a class="pull-right btn btn-primary" href="{{route('all.advance_salary')}}">All</a> </span></h3></div>
             <div class="panel-body">
             <form role="form" action="{{url('/insert_advance_salary')}}" method="post" enctype="multipart/form-data">
                     @csrf
