@@ -202,6 +202,14 @@
                             </li>
 
                             <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-contacts"></i><span> Category </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{route('add.category')}}">Add Category </a></li>
+                                     <li><a href="{{route('all.category')}}">All Category </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-contacts"></i><span> Employee </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('add.employee')}}">Add Employee </a></li>
@@ -230,6 +238,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('add.advance_salary')}}">Add Advance Salary </a></li>
                                      <li><a href="{{route('all.advance_salary')}}">All Advance  Salary </a></li>
+                                     <li><a href="{{route('pay.salary')}}">Pay Salary </a></li>
                                 </ul>
                             </li>
 

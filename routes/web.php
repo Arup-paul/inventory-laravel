@@ -10,6 +10,13 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//category Routes here
+Route::get('/add-category', 'categoryController@index')->name('add.category');
+Route::post('/insert-category', 'categoryController@store');
+Route::get('/all_category', 'categoryController@show')->name('all.category');
+Route::get('/delete_category/{id}', 'categoryController@deleteCategory');
+
+
 //employer Routes here
 Route::get('/add-employee', 'EmployeeController@index')->name('add.employee');
 Route::post('/insert-employee', 'EmployeeController@store');
@@ -49,3 +56,6 @@ Route::get('/all_advance_salary', 'SalaryController@showAdvanceSalary')->name('a
 Route::post('/insert_advance_salary', 'SalaryController@InsertAdvanceSalary');
 Route::get('/delete_advance_salary/{id}', 'SalaryController@deleteAdvanceSalary');
 
+
+//pay salary
+Route::get('/pay_salary', 'SalaryController@Paysalary')->name('pay.salary');
