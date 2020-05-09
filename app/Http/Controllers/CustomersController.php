@@ -13,7 +13,7 @@ class CustomersController extends Controller {
 
     // index page
     public function index() {
-        return view( 'add_customer' );
+        return view( 'customers.add_customer' );
     }
 
     // add customer
@@ -83,7 +83,7 @@ class CustomersController extends Controller {
     //show Customers
     public function show() {
         $customers = Customers::all();
-        return view( 'all_customers', compact( 'customers' ) );
+        return view( 'customers.all_customers', compact( 'customers' ) );
     }
 
 //view single customers
@@ -91,7 +91,7 @@ class CustomersController extends Controller {
         $single = DB::table( 'customers' )
             ->WHERE( 'id', $id )
             ->first();
-        return view( 'view_customer', compact( 'single' ) );
+        return view( 'customers.view_customer', compact( 'single' ) );
     }
 
     //delete Customers
@@ -127,7 +127,7 @@ class CustomersController extends Controller {
         $edit = DB::table( 'customers' )
             ->WHERE( 'id', $id )
             ->first();
-        return view( 'edit_customer', compact( 'edit' ) );
+        return view( 'customers.edit_customer', compact( 'edit' ) );
 
     }
 
