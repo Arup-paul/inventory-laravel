@@ -68,21 +68,21 @@ class SalaryController extends Controller {
     }
 
     //show Advance salary Sheet
-     public function showAdvanceSalary(){
-         $salary = DB::table('advance_salary')
-                   ->join('employees','advance_salary.employee_id','employees.id')
-                   ->select('advance_salary.*','employees.name','employees.salary','employees.photo')
-                   ->orderBy('id','DESC')
-                    ->get();
-                   return view('all_advance_salary',compact('salary'));
-     }
+    public function showAdvanceSalary() {
+        $salary = DB::table( 'advance_salary' )
+            ->join( 'employees', 'advance_salary.employee_id', 'employees.id' )
+            ->select( 'advance_salary.*', 'employees.name', 'employees.salary', 'employees.photo' )
+            ->orderBy( 'id', 'DESC' )
+            ->get();
+        return view( 'all_advance_salary', compact( 'salary' ) );
+    }
 
-      //delete Advance Salary
+    //delete Advance Salary
     public function deleteAdvanceSalary( $id ) {
 
-        $delete =  DB::table( 'advance_salary' )
-        ->WHERE( 'id', $id )
-        ->delete();
+        $delete = DB::table( 'advance_salary' )
+            ->WHERE( 'id', $id )
+            ->delete();
         if ( $delete ) {
             $notification = array(
                 'message' => "Succesfully  Deleted",
@@ -99,9 +99,12 @@ class SalaryController extends Controller {
 
     }
 
+    //pay salary
 
+    public function Paysalary() {
 
-
-
+        $employees = DB::table( 'employees' )->get();
+        return view( 'pay_salary', compact( 'employees' ) );
+    }
 
 }
