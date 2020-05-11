@@ -75,11 +75,11 @@ Route::post('/update-product/{id}', 'ProductsController@updateProduct');
 //Expense route
 Route::get('/add-expense', 'ExpenseController@index')->name('add.expense');
 Route::get('/today-expense', 'ExpenseController@TodayExpense')->name('today.expense');
-Route::get('/month-expense', 'ExpenseController@MonthExpense')->name('month.expense');
 Route::post('/insert-expense', 'ExpenseController@store');
 Route::get('/delete_expenses/{id}', 'ExpenseController@deleteExpense');
 Route::get('/edit_expense/{id}', 'ExpenseController@editTodayExpense');
 Route::post('/update-expense/{id}', 'ExpenseController@updateTodayExpense');
+Route::get('/month-expense', 'ExpenseController@MonthExpense')->name('month.expense');
 
 
 
