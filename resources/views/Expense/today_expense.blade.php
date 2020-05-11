@@ -15,8 +15,14 @@
                     </ol>
                 </div>
             </div>
+            @php
+             $date = date("d-m-Y");
+            $expense  = DB::table('expenses')->where('date',$date)->sum('amount');
+            @endphp
             <div class="row">
                 <div class="col-md-12">
+                <h2 class="text-success text-center">Total:{{$expense}}</h2>
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Today Expense<span><a class="pull-right btn btn-primary" href="{{route('add.expense')}}">Add New</a> </span></h3>
@@ -41,12 +47,13 @@
                                             @foreach($today as $single)
                                             <tr>
                                             <td>{{$single->details}}</td>
+                                            <td>{{$single->amount}}</td>
                                             <td>{{$single->date}}</td>
                                             <td>{{$single->month}}</td>
                                             <td>{{$single->year}}</td>
                                                 <td>
                                                     <a href="{{URL::to('/edit_expense/'.$single->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                                    <a  href="{{URL::to('/delete_expense/'.$single->id)}}" class="btn btn-sm btn-danger" id="delete">Delete</a>
+                                                    <a  href="{{URL::to('/delete_expenses/'.$single->id)}}" class="btn btn-sm btn-danger" id="delete">Delete</a>
 
                                                 </td>
                                             </tr>

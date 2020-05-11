@@ -19,10 +19,7 @@ class ExpenseController extends Controller {
     public function store( Request $request ) {
         $validatedData = $request->validate( [
             'details' => 'required',
-            'month' => 'required',
             'amount' => 'required',
-            'date' => 'required',
-            'year' => 'required',
         ] );
 
         $data            = array();
@@ -38,7 +35,7 @@ class ExpenseController extends Controller {
                 'message' => "Succesfully Expenses Add",
                 'alert-type' => 'success',
             );
-            return Redirect()->back()->with( $notification );
+            return Redirect()->route('today.expense')->with( $notification );
         } else {
             $notification = array(
                 'message' => "Error",
@@ -53,6 +50,59 @@ class ExpenseController extends Controller {
             $date = date("d-m-Y");
             $today  = DB::table('expenses')->where('date',$date)->get();
             return view('Expense.today_expense',compact('today'));
+    }
+
+    public function editTodayExpense($id){
+        $tdy = DB::table('expenses')->WHERE('id',$id)->first();
+        return view('Expense.edit_today_expense',compact('tdy'));
+    }
+
+    public function updateTodayExpense(Request $request,$id){
+        $validatedData = $request->validate( [
+            'details' => 'required',
+            'amount' => 'required',
+        ] );
+
+        $data            = array();
+        $data['details'] = $request->details;
+        $data['amount']  = $request->amount;
+        $data['month']   = $request->month;
+        $data['date']    = $request->date;
+        $data['year']    = $request->year;
+
+        $advance = DB::table( 'expenses' )->where('id',$id)->update( $data );
+        if ( $advance ) {
+            $notification = array(
+                'message' => "Succesfully Expenses Update",
+                'alert-type' => 'success',
+            );
+            return Redirect()->route('today.expense')->with( $notification );
+        } else {
+            $notification = array(
+                'message' => "Error",
+                'alert-type' => 'error',
+            );
+            return Redirect()->back()->with( $notification );
+        }
+    }
+
+    public function deleteExpense($id){
+        $delete = DB::table( 'expenses' )
+        ->WHERE( 'id', $id )
+        ->delete();
+    if ( $delete ) {
+        $notification = array(
+            'message' => "Succesfully  Deleted",
+            'alert-type' => 'success',
+        );
+        return Redirect()->back()->with( $notification );
+    } else {
+        $notification = array(
+            'message' => "Error",
+            'alert-type' => 'error',
+        );
+        return Redirect()->back()->with( $notification );
+    }
     }
 
     public function MonthExpense() {
