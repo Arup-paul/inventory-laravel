@@ -255,7 +255,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('add.expense')}}">Add New </a></li>
                                      <li><a href="{{route('today.expense')}}">Today Expense </a></li>
-                                     <li><a href="{{route('month.expense')}}">This Month Expense </a></li>
+                                     <li><a href="{{route('month.expense')}}"> Month Expense </a></li>
                                 </ul>
                             </li>
 

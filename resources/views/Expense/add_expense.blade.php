@@ -18,7 +18,7 @@
          <div class="col-md-1"></div>
         <div class="col-md-8">
         <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">Add Expense<span class="pull-right">{{date("d-m-Y")}} <a class=" btn btn-primary" href="{{route('today.expense')}}">Today Expense</a> <a class=" btn btn-info" href="{{route('month.expense')}}">This Month Expense</a> </span></h3></div>
+        <div class="panel-heading"><h3 class="panel-title">Add Expense<span class="pull-right">{{date("d-m-Y")}} <a class=" btn btn-primary" href="{{route('today.expense')}}">Today Expense</a> <a class=" btn btn-info" href="{{route('month.expense')}}"> Month Expense</a> </span></h3></div>
             <div class="panel-body">
             <form role="form" action="{{url('/insert-expense')}}" method="post" enctype="multipart/form-data">
                     @csrf
