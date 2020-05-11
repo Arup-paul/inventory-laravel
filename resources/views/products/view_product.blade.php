@@ -27,6 +27,9 @@
                             <h3 class="panel-title">Product Information</h3>
                         </div>
                         <div class="panel-body">
+                            <div class="about-info-p ">
+                                <img src="{{URL::to($single->product_image)}}" height="300px" width="300px" alt="">
+                            </div>
                             <div class="about-info-p">
                                 <strong>Product Name</strong>
                                 <br/>
@@ -79,11 +82,7 @@
                                 <br/>
                                 <p class="text-muted">{{$single->selling_price}}</p>
                             </div>
-                            <div class="about-info-p m-b-0">
-                                <strong>Image</strong>
-                                <br/>
-                                <img src="{{URL::to($single->product_image)}}" height="150px" width="120px" alt="">
-                            </div>
+                      
                             <div class="about-info-p m-b-0">
                             <a class="btn btn-primary" href="{{route('all.product')}}">Ok</a>
                             </div>

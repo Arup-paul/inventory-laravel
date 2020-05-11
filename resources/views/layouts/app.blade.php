@@ -250,6 +250,15 @@
                                 </ul>
                             </li>
 
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i><span> Expense </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{route('add.expense')}}">Add New </a></li>
+                                     <li><a href="{{route('today.expense')}}">Today Expense </a></li>
+                                     <li><a href="{{route('month.expense')}}">This Month Expense </a></li>
+                                </ul>
+                            </li>
+
 
 
 
