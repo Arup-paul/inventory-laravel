@@ -50,8 +50,11 @@ class ExpenseController extends Controller {
     }
 
     public function TodayExpense() {
-
+            $date = date("d-m-Y");
+            $today  = DB::table('expenses')->where('date',$date)->get();
+            return view('Expense.today_expense',compact('today'));
     }
+
     public function MonthExpense() {
 
     }
