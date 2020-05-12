@@ -256,6 +256,7 @@
                                     <li><a href="{{route('add.expense')}}">Add New </a></li>
                                      <li><a href="{{route('today.expense')}}">Today Expense </a></li>
                                      <li><a href="{{route('month.expense')}}"> Month Expense </a></li>
+                                     <li><a href="{{route('year.expense')}}"> Year Expense </a></li>
                                 </ul>
                             </li>
 
