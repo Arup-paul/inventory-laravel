@@ -256,6 +256,16 @@
                                     <li><a href="{{route('add.expense')}}">Add New </a></li>
                                      <li><a href="{{route('today.expense')}}">Today Expense </a></li>
                                      <li><a href="{{route('month.expense')}}"> Month Expense </a></li>
+                                     <li><a href="{{route('year.expense')}}"> Year Expense </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i><span> Attendence </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                <li><a href="{{route('take.attendence')}}">Take Attendence </a></li>
+                                    <li><a href="{{route('all.attendence')}}">All Attendence </a></li>
+
                                 </ul>
                             </li>
 
