@@ -16,7 +16,7 @@
                 </div>
             </div>
             @php
-             $mon= date("F");
+             $mon= $date;
             $expense  = DB::table('expenses')->where('month',$mon)->sum('amount');
             @endphp
                 <h2 class="text-success text-center">Total:{{$expense}}</h2>

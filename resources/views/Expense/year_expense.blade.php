@@ -16,7 +16,7 @@
                 </div>
             </div>
             @php
-             $y= date("Y");
+             $y= $date;
             $expense  = DB::table('expenses')->where('year',$y)->sum('amount');
             @endphp
             <div class="row">

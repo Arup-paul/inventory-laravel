@@ -92,3 +92,12 @@ Route::get( '/2019', 'ExpenseController@Expense2019' )->name( '2019.expense' );
 Route::get( '/2018', 'ExpenseController@Expense2018' )->name( '2018.expense' );
 Route::get( '/2017', 'ExpenseController@Expense2017' )->name( '2017.expense' );
 Route::get( '/2016', 'ExpenseController@Expense2016' )->name( '2016.expense' );
+
+
+//Attendencce route
+Route::get( '/take-attendence', 'AttendenceController@TakeAttendence' )->name( 'take.attendence' );
+Route::get( '/all-attendence', 'AttendenceController@AllAttendence' )->name( 'all.attendence' );
+Route::post( '/insert-attendence', 'AttendenceController@InsertAttendence' );
+Route::get( '/edit_attendence/{edit_date}', 'AttendenceController@editAttendence' );
+Route::post( '/update-attendence', 'AttendenceController@UpdateAttendence' );
+Route::get( '/view_attendence/{edit_date}', 'AttendenceController@viewAttendence' );
