@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Products;
+use App\product;
 use DB;
 use Illuminate\Http\Request;
+use App\Exports\productsExport;
+use App\Imports\productsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductsController extends Controller {
     //
@@ -80,7 +83,7 @@ class ProductsController extends Controller {
 
     //show Customers
     public function show() {
-        $products = Products::all();
+        $products = product::all();
         return view( 'products.all_product', compact( 'products' ) );
     }
 
@@ -209,4 +212,60 @@ class ProductsController extends Controller {
         }
 
     }
+
+
+
+     //product import and export
+
+    public function importProduct(){
+       return view('products.import_product');
+    }
+
+    public function export()
+    {
+        return Excel::download(new productsExport, 'products.xlsx');
+    }
+
+    public function import(Request $request){
+
+        $import = Excel::import(new productsImport, $request->file('import_product'));
+        if ( $import ) {
+            $notification = array(
+                'message' => "Succesfully Products  added",
+                'alert-type' => 'success',
+            );
+            return Redirect()->route( 'all.product' )->with( $notification );
+ 
+        } else {
+            return Redirect()->back();
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
