@@ -54,10 +54,17 @@ Route::get( '/pay_salary', 'SalaryController@Paysalary' )->name( 'pay.salary' );
 Route::get( '/add-product', 'ProductsController@index' )->name( 'add.product' );
 Route::get( '/all_product', 'ProductsController@show' )->name( 'all.product' );
 Route::post( '/insert-product', 'ProductsController@store' );
-Route::get( '/md5(view_product)/{id}', 'ProductsController@viewProduct' );
+Route::get( '/view_product/{id}', 'ProductsController@viewProduct' );
 Route::get( '/delete_product/{id}', 'ProductsController@deleteProduct' );
 Route::get( '/edit_product/{id}', 'ProductsController@editProduct' );
 Route::post( '/update-product/{id}', 'ProductsController@updateProduct' );
+
+//product excel import and export
+Route::get( '/import-product', 'ProductsController@importProduct' )->name( 'import.product' );
+Route::get( '/export', 'ProductsController@export' )->name( 'product.export' );
+Route::post( '/import', 'ProductsController@import' )->name( 'importProducts' );
+
+
 
 //Expense route
 Route::get( '/add-expense', 'ExpenseController@index' )->name( 'add.expense' );

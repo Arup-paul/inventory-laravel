@@ -250,6 +250,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('add.product')}}">Add Prooducts </a></li>
                                      <li><a href="{{route('all.product')}}">All Products </a></li>
+                                     <li><a href="{{route('import.product')}}">Import Products </a></li>
                                 </ul>
                             </li>
 
