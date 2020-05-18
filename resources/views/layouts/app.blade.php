@@ -200,6 +200,9 @@
                             <li>
                                 <a href="{{route('home')}}" class="waves-effect active"><i class="md md-home"></i><span> Dashboard </span></a>
                             </li>
+                            <li>
+                                <a href="{{route('pos')}}" class="waves-effect active"><i class="md md-home"></i><span> POS </span></a>
+                            </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-contacts"></i><span> Category </span><span class="pull-right"><i class="md md-add"></i></span></a>
@@ -265,6 +268,14 @@
                                 <ul class="list-unstyled">
                                 <li><a href="{{route('take.attendence')}}">Take Attendence </a></li>
                                     <li><a href="{{route('all.attendence')}}">All Attendence </a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i><span> Setting </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                <li><a href="{{route('setting')}}">Setting </a></li>
 
                                 </ul>
                             </li>

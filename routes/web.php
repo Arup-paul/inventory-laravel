@@ -101,3 +101,29 @@ Route::post( '/insert-attendence', 'AttendenceController@InsertAttendence' );
 Route::get( '/edit_attendence/{edit_date}', 'AttendenceController@editAttendence' );
 Route::post( '/update-attendence', 'AttendenceController@UpdateAttendence' );
 Route::get( '/view_attendence/{edit_date}', 'AttendenceController@viewAttendence' );
+
+//setting route
+Route::get( '/setting', 'SettingController@Setting' )->name( 'setting' );
+Route::post( '/update-setting/{id}', 'SettingController@updateSetting' );
+
+
+//pos route
+
+Route::get('/pos','PosController@index')->name('pos');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
