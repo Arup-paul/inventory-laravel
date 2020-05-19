@@ -19,6 +19,7 @@
             </div> <br>
             <br>
             <div class="row">
+
                 <div class="col-lg-12 col-md-12 col-sm-12 ">
                     <div class="portfolioFilter">
                         @foreach( $categories as $cat)
@@ -31,7 +32,7 @@
 
             <div class="row">
                 <div class="col-lg-5">
-                    <div class="panel">
+                    {{-- <div class="panel">
                             <h4 class="text-info pull-left">Customer</h4>
                             <a href="" class="btn btn-sm btn-primary pull-right btn btn-sm  btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Add New</a>
 
@@ -42,7 +43,7 @@
                                    @endforeach
                             </select>
 
-                        </div>
+                        </div> --}}
 
                         <div class="price_card text-center">
                             <ul class="price-features" style="border:1px solid #ddd;">
@@ -56,33 +57,71 @@
                                            <th class="text-white">Action</th>
                                         </tr>
                                     </thead>
+                                    <br>
                                     <tbody>
+                                        @php
+                                         $cart_product = Cart::content();
+                                        @endphp
+                                         @foreach($cart_product as $product)
                                         <tr>
-                                            <td>Arup</td>
+
+                                        <td>{{$product->name}}</td>
                                             <td>
-                                                <input type="number" style="width:40px;" name="" value="2">
+                                            <form action="{{url('/cart-update-pos/'.$product->rowId)}}" method="post">
+                                                @csrf
+                                               <input type="number" style="width:40px;" name="qty" value="{{$product->qty}}">
                                                 <button type="submit" class="btn btn-sm btn-success" style="margin-top:-6px;" ><i class="md md-check"></i></button>
+                                               </form>
                                             </td>
-                                            <td>2200</td>
-                                            <td>34</td>
-                                            <td><i class="md md-delete text-danger" style="font-size: 20px;"></i></td>
+
+                                            <td>{{$product->price}}</td>
+                                            <td>{{$product->price*$product->qty}}</td>
+                                        <td><a href="{{url('/cart-remove-pos/'.$product->rowId)}}"><i class="md md-delete text-danger" style="font-size: 20px;"></i></a></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </ul>
                             <div class="pricing-header bg-primary">
                                 <br>
-                               <p style="font-size: 18px;"> Quantity:2 </p>
-                               <p style="font-size: 18px;"> Vat:2% </p>
+                               <p style="font-size: 18px;"> Quantity:{{Cart::count()}} </p>
+                               <p style="font-size: 18px;"> Sub Total: {{Cart::subtotal()}} </p>
+                               <p style="font-size: 18px;"> Vat: {{Cart::tax()}}</p>
                                <hr>
-                               <p><h2 class="text-white">Total:</h2><h1 class="text-white">00.00</h1> </p>
-                               <br>
+                               <p><h2 class="text-white">Total:</h2><h1 class="text-white">{{Cart::total()}}</h1> </p>
+                               <br> <br>
+
+                               <form action="{{url('/create-invoice')}}" method="post">
+                                @csrf
+
+                                <div class="panel"> <br>
+                                    @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                  @endif
+                                    <h4 class="text-info pull-left"> Select Customer</h4>
+                                     <a href="" class="btn btn-sm btn-primary pull-right btn btn-sm  btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Add New</a>
+
+                                    <select name="customer_id" class="form-control">
+                                           <option disable="" selected="" value=""  >Select a Customer</option>
+
+                                           @foreach($customer as $cus)
+                                           <option value="{{$cus->id}}">{{$cus->name}}</option>
+                                           @endforeach
+                                    </select>
+
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-success">Create A Invoice</button>
 
                         </div> <!-- end Pricing_card -->
                     </div>
-
+                </form>
 
 
 
@@ -97,6 +136,7 @@
                                 <th>Expire Date</th>
                                 <th>Garage</th>
                                 <th>Route</th>
+                                <th></th>
 
                             </tr>
                         </thead>
@@ -105,8 +145,16 @@
                         <tbody>
                             @foreach($products as $single)
                             <tr>
+                            <form action="{{url('/add-cart-pos')}}" method="post">
+                                @csrf
                                 <td>
-                                    <a href="#" style="font-size:20px; color:#f2f2f2;background:black;padding:0 5px; ">+</a>
+                                    {{-- <a href="#" style="font-size:20px; color:#f2f2f2;background:black;padding:0 5px; ">+</a> --}}
+                                <input type="hidden" name="id" value="{{$single->id}}">
+                                    <input type="hidden" name="name" value="{{$single->product_name}}">
+                                    <input type="hidden" name="qty" value="1">
+                                    <input type="hidden" name="price" value="{{$single->selling_price}}">
+                                    <input type="hidden" name="weight" value="{{$single->product_code}}">
+
                                     <img src="{{$single->product_image}}" alt="image" height="80px" width="100px"></td>
                                 <td>{{$single->product_name}}</td>
                                 <td>{{$single->product_code}}</td>
@@ -114,7 +162,8 @@
                                 <td>{{$single->expire_date}}</td>
                                 <td>{{$single->product_garage}}</td>
                                 <td>{{$single->product_route}}</td>
-
+                                <td><button type="submit" class="btn btn-sm btn-info">+</button></td>
+                                </form>
                             </tr>
                             @endforeach
 
@@ -229,7 +278,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <img id="image" alt="image" src="#">
-                            <label for="photo">Product Image*</label>
+                            <label for="photo"> Image*</label>
                             <input type="file" class="form-control" name="photo" id="photo" accept="image/*" class="upload" onchange="readURL(this);">
                         </div>
                     </div>

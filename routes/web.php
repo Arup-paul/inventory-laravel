@@ -118,6 +118,13 @@ Route::post( '/update-setting/{id}', 'SettingController@updateSetting' );
 
 Route::get('/pos','PosController@index')->name('pos');
 
+//cart Route
+
+Route::post('/add-cart-pos','CartController@index') ;
+Route::post('/cart-update-pos/{rowId}','CartController@update') ;
+Route::get('/cart-remove-pos/{rowId}','CartController@remove') ;
+
+Route::post('/create-invoice','CartController@CreateInvoice') ;
 
 
 
