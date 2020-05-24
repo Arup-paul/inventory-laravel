@@ -255,6 +255,14 @@
                             </li>
 
                             <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-palette"></i><span> Orders </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{route('pending.order')}}">Pending Orders </a></li>
+                                    <li><a href="{{route('approved.order')}}">Approved Orders </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-palette"></i><span> Expense </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('add.expense')}}">Add New </a></li>

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+   $today = date('d/m/Y');
+$total_sales = DB::table('orders')->where('order_date',$today)->sum('total');
 
+@endphp
 <div class="content-page">
     <!-- Start content -->
     <div class="content">
@@ -23,18 +27,15 @@
                 <div class="col-md-6 col-sm-6 col-lg-3">
                     <div class="mini-stat clearfix bx-shadow">
                         <span class="mini-stat-icon bg-info"><i class="ion-social-usd"></i></span>
+
                         <div class="mini-stat-info text-right text-muted">
-                            <span class="counter">15852</span>
-                            Total Sales
+                        <span class="counter">{{$total_sales}}</span>
+                            Today Sales
                         </div>
                         <div class="tiles-progress">
                             <div class="m-t-20">
                                 <h5 class="text-uppercase">Sales <span class="pull-right">60%</span></h5>
-                                <div class="progress progress-sm m-0">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>

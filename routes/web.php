@@ -117,7 +117,11 @@ Route::post( '/update-setting/{id}', 'SettingController@updateSetting' );
 //pos route
 
 Route::get('/pos','PosController@index')->name('pos');
-
+Route::get('/pending/order','PosController@PendingOrder')->name('pending.order');
+Route::get('/approved/order','PosController@ApprovedOrder')->name('approved.order');
+Route::get('/view_order_status/{id}','PosController@viewOrder');
+Route::get('/order-confirm-pos/{id}','PosController@OrderConfirm');
+Route::get('/downloadPDF/{id}','PosController@downloadPDF');
 //cart Route
 
 Route::post('/add-cart-pos','CartController@index') ;
@@ -125,6 +129,7 @@ Route::post('/cart-update-pos/{rowId}','CartController@update') ;
 Route::get('/cart-remove-pos/{rowId}','CartController@remove') ;
 
 Route::post('/create-invoice','CartController@CreateInvoice') ;
+Route::post('/final-invoice-pos','CartController@FinalInvoice') ;
 
 
 
