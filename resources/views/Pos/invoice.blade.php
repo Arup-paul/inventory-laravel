@@ -99,7 +99,7 @@
                             <div class="hidden-print">
                                 <div class="pull-right">
                                     <a href="#" onclick="window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
-                                    <a href="#" class="btn btn-primary waves-effect waves-light">Submit</a>
+                                    <a href="" class="btn btn-sm btn-primary pull-right btn btn-sm  btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Submit</a>
                                 </div>
                             </div>
                         </div>
@@ -114,6 +114,85 @@
 </div> <!-- container -->
 
     </div> <!-- content -->
+
+    {{-- modal  --}}
+
+<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title text-info">Invoice of {{$customer->name}}
+                <span class="pull-right">Total: {{Cart::total()}}</span>
+            </h4>
+
+            </div>
+
+
+
+            <div class="modal-body">
+            <form  action="{{url('/final-invoice-pos')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                  @endif
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-4" class="control-label">Payment</label>
+                            <select name="payment_status" class="form-control" id="">
+                                <option value="handcash">Handcash</option>
+                                <option value="cheque">Cheque</option>
+                                <option value="due">Due</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-5" class="control-label">Pay</label>
+                            <input type="text" name="pay" class="form-control" id="field-5" placeholder="Pay">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-6" class="control-label">Due</label>
+                            <input type="text" name="due" class="form-control" id="field-6" placeholder="Due">
+                        </div>
+                    </div>
+
+                <input type="hidden" name="customer_id" value="{{$customer->id}}">
+                <input type="hidden" name="order_date" value="{{date('d/m/Y')}}">
+                <input type="hidden" name="order_status" value="pending">
+                <input type="hidden" name="total_products" value="{{Cart::count()}}">
+                <input type="hidden" name="vat" value="{{Cart::tax()}}">
+                <input type="hidden" name="sub_total" value="{{Cart::subtotal()}}">
+                <input type="hidden" name="total" value="{{Cart::total()}}">
+
+
+
+
+
+                </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info waves-effect waves-light">Submit</button>
+            </div>
+        </form>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+{{-- modal  --}}
 
 
 @endsection
